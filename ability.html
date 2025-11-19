@@ -14,7 +14,6 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-block">
-      <!-- ✶ 這顆星：可以點回首頁、沒有圈圈 -->
       <a href="index.html" class="logo-mark" aria-label="回到首頁">✶</a>
       <div>
         <div class="logo-text-main">MIO DREAM NOTE</div>
@@ -22,14 +21,22 @@
       </div>
     </div>
 
-    <nav>
+    <!-- 漢堡按鈕（手機用） -->
+    <button class="nav-toggle" aria-label="切換選單">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- 導覽列 -->
+    <nav class="site-nav">
       <ul class="nav-list">
         <li><a href="index.html"   class="nav-link">首頁</a></li>
         <li><a href="profile.html" class="nav-link">人設</a></li>
         <li><a href="ability.html" class="nav-link nav-link-active">能力</a></li>
-        <li><a href="dreams.html"  class="nav-link">夢圖專區</a></li>
         <li><a href="wardrobe.html" class="nav-link">澪的衣帽間</a></li>
-        <li><a href="story.html" class="nav-link">主線故事</a></li>
+        <li><a href="dreams.html"  class="nav-link">夢圖專區</a></li>
+        <li><a href="story.html"   class="nav-link">主線故事</a></li>
         <li><a href="relation.html" class="nav-link">關係年表</a></li>
       </ul>
     </nav>
@@ -230,5 +237,16 @@
       </ul>
     </section>
   </main>
+  <script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('is-open');
+    });
+  }
+</script>
+
 </body>
 </html>
