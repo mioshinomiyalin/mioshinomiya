@@ -1019,8 +1019,8 @@ a {
 @media (max-width: 768px) {
   body { font-size: 18px !important; line-height: 1.9 !important; }
   p, div, span, a, li, button { font-size: 18px !important; }
-  h1, .page-title { font-size: 28px !important; }
-  h2, .card-title { font-size: 24px !important; }
+  h1, .page-title { font-size: 24px !important; }
+  h2, .card-title { font-size: 22px !important; }
   .gallery-desc, .story-content, .gallery-modal-text { font-size: 18px !important; }
   .gallery-tag, .filter-chip { font-size: 14px !important; }
 }
