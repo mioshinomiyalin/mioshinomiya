@@ -576,52 +576,6 @@ a {
   margin-bottom: 16px;
 }
 
-/* ============================
-   夢圖專區：大圖展示版
-   ============================ */
-
-.page-dreams .gallery-grid {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 每張更寬 */
-  gap: 24px;
-}
-
-.page-dreams .gallery-work img {
-  height: 240px;
-  object-fit: cover;
-  border-bottom: 1px solid rgba(200, 200, 240, 0.5);
-}
-
-.page-dreams .gallery-work {
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(80, 80, 160, 0.15);
-}
-
-.page-dreams .gallery-work-title {
-  font-size: 18px;
-}
-
-/* ============================
-   衣帽間：服裝作品版
-   ============================ */
-
-.page-wardrobe .gallery-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.page-wardrobe .gallery-work img {
-  height: 420px;            /* 固定高度展示整件服裝 */
-  object-fit: contain;
-  background: #f5f5ff;
-}
-
-.page-wardrobe .gallery-work {
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.12);
-}
-
 /* 搜尋框 */
 
 .gallery-search {
@@ -722,6 +676,54 @@ a {
   border-radius: 16px;
   flex-shrink: 0;
 }
+
+
+/* ============================
+   夢圖專區：大圖展示版
+   ============================ */
+
+.page-dreams .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 每張更寬 */
+  gap: 24px;
+}
+
+.page-dreams .gallery-work img {
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(200, 200, 240, 0.5);
+}
+
+.page-dreams .gallery-work {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(80, 80, 160, 0.15);
+}
+
+.page-dreams .gallery-work-title {
+  font-size: 18px;
+}
+
+/* ============================
+   衣帽間：服裝作品版
+   ============================ */
+
+.page-wardrobe .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.page-wardrobe .gallery-work img {
+  height: 420px;            /* 固定高度展示整件服裝 */
+  object-fit: contain;
+  background: #f5f5ff;
+}
+
+.page-wardrobe .gallery-work {
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.12);
+}
+
 
 /* ====== 下面開始是你的圖卡，不動邏輯 ====== */
 
