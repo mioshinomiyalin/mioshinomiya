@@ -1059,3 +1059,41 @@ a {
     grid-template-columns: 1fr;
   }
 }
+/* ============================
+   手機版字體放大設定（重點）
+   ============================ */
+@media (max-width: 768px) {
+
+  body {
+    font-size: 17px; /* 全站字體 +2～3px，手機剛好 */
+    line-height: 1.9;
+  }
+
+  h1, .page-title {
+    font-size: 26px;
+  }
+
+  h2, .card-title {
+    font-size: 22px;
+  }
+
+  p, .page-subtitle, .gallery-desc, .timeline-item p {
+    font-size: 17px;
+  }
+
+  .nav-link {
+    font-size: 16px;
+  }
+
+  .gallery-work-title {
+    font-size: 18px;
+  }
+
+  .gallery-tag, .filter-chip {
+    font-size: 14px;
+  }
+
+  .gallery-btn {
+    font-size: 16px;
+  }
+}
