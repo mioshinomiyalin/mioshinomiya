@@ -576,6 +576,52 @@ a {
   margin-bottom: 16px;
 }
 
+/* ============================
+   夢圖專區：大圖展示版
+   ============================ */
+
+.page-dreams .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 每張更寬 */
+  gap: 24px;
+}
+
+.page-dreams .gallery-work img {
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(200, 200, 240, 0.5);
+}
+
+.page-dreams .gallery-work {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(80, 80, 160, 0.15);
+}
+
+.page-dreams .gallery-work-title {
+  font-size: 18px;
+}
+
+/* ============================
+   衣帽間：服裝作品版
+   ============================ */
+
+.page-wardrobe .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.page-wardrobe .gallery-work img {
+  height: 420px;            /* 固定高度展示整件服裝 */
+  object-fit: contain;
+  background: #f5f5ff;
+}
+
+.page-wardrobe .gallery-work {
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.12);
+}
+
 /* 搜尋框 */
 
 .gallery-search {
@@ -1080,15 +1126,80 @@ a {
     font-size: 15px;
   }
 }
+
 @media (max-width: 768px) {
 
+  /* 手機排版與字體微放大 */
+  body {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .card-title,
+  .story-summary-title,
+  .gallery-work-title,
+  .timeline-title {
+    font-size: 16px;
+  }
+
+  .page-subtitle,
+  .card-note,
+  .hero-main-text,
+  .info-value,
+  .gallery-desc,
+  .story-content,
+  .gallery-modal-text,
+  .timeline-item p {
+    font-size: 14px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  /* 版面縮排與卡片間距 */
   .header-inner {
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
 
-  /* 顯示漢堡，隱藏原本 nav（等點開再出現） */
+  .page-wrapper {
+    padding: 20px 14px 48px;
+  }
+
+  .card {
+    padding: 18px 16px;
+  }
+
+  .card.two-columns,
+  .hero-block,
+  .profile-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hero-star-card {
+    margin-top: 8px;
+  }
+
+  .info-list {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline-list {
+    gap: 14px;
+  }
+
+  /* 手機版漢堡選單 */
   .nav-toggle {
     display: inline-flex;
     margin-left: auto;
