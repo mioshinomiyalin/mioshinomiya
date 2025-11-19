@@ -1,0 +1,1061 @@
+/* =============================
+   MIO｜淡藍紫・霧面星光・上方導覽
+   ============================= */
+
+:root {
+  --bg-top: #f7f7ff;
+  --bg-bottom: #eef0ff;
+
+  --accent: #c7c3ff;          /* 淡紫 */
+  --accent-strong: #b1a9ff;   /* 深一階 */
+  --accent-soft: #dadcff;     /* 柔霧淺紫 */
+
+  --text-main: #4c4c66;       /* 柔灰藍 */
+  --text-sub: #7a7a99;
+
+  --card-bg: rgba(255, 255, 255, 0.72);
+  --card-border: 1px solid rgba(160, 160, 200, 0.25);
+
+  --shadow-soft: 0 12px 30px rgba(140, 145, 200, 0.25);
+
+  --radius-lg: 18px;
+  --radius-md: 14px;
+}
+
+/* ========= 基底 ========= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+}
+
+
+body {
+  min-height: 100vh;
+  font-family: "Noto Serif JP", "Noto Sans TC", serif;
+  font-size: 17px; /* 最小 12px，你現在直接升級 */
+  background:
+    radial-gradient(circle at 30% -10%, rgba(210, 215, 255, 0.7), transparent 55%),
+    radial-gradient(circle at 90% 120%, rgba(200, 190, 255, 0.4), transparent 55%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 星光柔霧層 */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.3px 1.3px at 14% 20%, rgba(180, 180, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(200, 200, 255, 0.7), transparent),
+    radial-gradient(1.2px 1.2px at 30% 60%, rgba(180, 170, 255, 0.7), transparent);
+  opacity: 0.4;
+  animation: twinkle 12s linear infinite alternate;
+  z-index: -1;
+}
+
+@keyframes twinkle {
+  0%   { transform: translate3d(0, 0, 0); opacity: .35; }
+  100% { transform: translate3d(10px, -8px, 0); opacity: .65; }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =============================
+   上方導覽列
+   ============================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(180, 180, 220, 0.35);
+  box-shadow: 0 3px 20px rgba(150, 150, 200, 0.25);
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* 左上角：星星＋標題 */
+
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #7a72b8;
+  cursor: pointer;
+  transition: transform 140ms ease, text-shadow 140ms ease;
+}
+
+.logo-mark:hover {
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(170, 165, 255, 0.9);
+}
+
+.logo-text-main {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #5c5c7a;
+}
+
+.logo-text-sub {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+/* 導覽按鈕 */
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  display: block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-sub);
+  transition: background 160ms ease, color 160ms ease,
+    box-shadow 160ms ease, transform 160ms ease;
+}
+
+.nav-link:hover {
+  background: rgba(200, 200, 255, 0.25);
+  color: #5c5c7a;
+}
+
+/* HTML 用的是 nav-link-active；一起套用高亮樣式 */
+.nav-link--current,
+.nav-link-active {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(180, 180, 255, 0.7);
+  transform: translateY(-1px);
+}
+
+/* =============================
+   主內容框架
+   ============================= */
+
+.page-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 16px 64px;
+}
+
+.page-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5c5c7a;
+}
+
+.page-subtitle {
+  margin: 0 0 20px;
+  font-size: 15px;
+  color: #7d7d9a;
+  line-height: 1.9;
+}
+
+/* =============================
+   共用卡片
+   ============================= */
+
+.card {
+  position: relative;
+  margin-bottom: 22px;
+  padding: 20px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  border: var(--card-border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.3px 1.3px at 10% 20%, rgba(200, 200, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 80% 10%, rgba(210, 210, 255, 0.6), transparent),
+    radial-gradient(1.2px 1.2px at 40% 90%, rgba(180, 170, 255, 0.6), transparent);
+  opacity: .45;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #6a6a8c;
+}
+
+.card-title small {
+  font-size: 13px;
+  color: var(--text-sub);
+  margin-left: 6px;
+}
+
+.card-note {
+  font-size: 15px;
+  color: var(--text-sub);
+  line-height: 1.9;
+  margin: 0 0 12px;
+}
+
+.card.two-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+/* =============================
+   首頁 hero
+   ============================= */
+
+.hero-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-main-text {
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.hero-quote {
+  margin-top: 10px;
+  font-size: 17px;
+  color: var(--accent-strong);
+  font-style: italic;
+}
+
+.hero-buttons {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 按鈕 */
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 15px;
+  border: 1px solid rgba(160, 160, 210, 0.6);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease,
+    box-shadow 160ms ease, transform 160ms ease;
+}
+
+.btn-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(180, 180, 255, 0.7);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.8);
+  color: #6a6a8c;
+}
+
+/* 右側小卡 */
+
+.hero-star-card {
+  font-size: 15px;
+  line-height: 1.9;
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  background:
+    radial-gradient(circle at top, rgba(225, 230, 255, 0.35), transparent 55%),
+    rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(185, 185, 225, 0.6);
+  color: var(--text-main);
+}
+
+/* 頁面導覽清單 */
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.info-item {
+  padding: 12px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(190, 190, 230, 0.5);
+}
+
+.info-label {
+  font-size: 14px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 15px;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+
+/* ====== 首頁：頁面導覽（可點卡片） ====== */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.nav-link-card {
+  display: block;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid #e8e8ff;
+  transition: 0.25s ease;
+}
+
+.nav-link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(140, 140, 255, 0.18);
+}
+
+.nav-link-card .info-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--accent);
+}
+
+.nav-link-card .info-value {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* =============================
+   人設：表格與關鍵字
+   ============================= */
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.profile-table th,
+.profile-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(190, 190, 230, 0.5);
+  vertical-align: top;
+}
+
+.profile-table th {
+  width: 80px;
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.profile-table td {
+  color: var(--text-sub);
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tag {
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: rgba(250, 250, 255, 0.95);
+  border: 1px solid rgba(190, 190, 230, 0.7);
+  color: #6a6a8c;
+}
+
+/* =============================
+   能力：能力條
+   ============================= */
+
+.stat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.stat-item {
+  font-size: 15px;
+}
+
+.stat-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.stat-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(200, 200, 255, 0.35);
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 0 12px rgba(190, 180, 255, 0.6);
+}
+
+/* =============================
+   社群按鈕（首頁用）
+   ============================= */
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #9f8cff, #6ec5ff);
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 12px rgba(120, 100, 255, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, opacity 0.15s ease;
+}
+
+.social-btn-icon {
+  font-size: 18px;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(120, 100, 255, 0.55);
+}
+
+/* ========= Toast 小提示（複製連結用） ========= */
+
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%) translateY(12px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(20, 20, 40, 0.9);
+  color: #fff;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =============================
+   作品列表共用（夢圖 / 衣帽間）
+   ============================= */
+
+.gallery-card {
+  padding: 24px 24px 28px;
+}
+
+.gallery-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* 搜尋框 */
+
+.gallery-search {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(120, 120, 180, 0.25);
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.05);
+}
+
+.gallery-search-icon {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.gallery-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font: inherit;
+}
+
+/* 篩選 chip */
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid rgba(120, 120, 180, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  cursor: pointer;
+  color: #55557a;
+  transition: background 150ms ease, color 150ms ease,
+    box-shadow 150ms ease, transform 150ms ease;
+}
+
+.filter-chip.is-active {
+  background: linear-gradient(90deg, #9f8cff, #6ec5ff);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(120, 100, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* 卡片 grid */
+
+/* ====== Modal 文字區（百日長文用）====== */
+.gallery-modal-text {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  text-align: left;
+
+  /* 長字串也要乖乖待在框內 */
+  word-break: break-word;      /* 或改成 break-all 都行 */
+  overflow-wrap: break-word;
+  white-space: pre-wrap;       /* 你打的換行會照樣顯示 */
+}
+
+/* ====== Modal：固定高度 + 內部滾動 ====== */
+.gallery-modal-dialog {
+  background: #ffffff;
+  border-radius: 18px;
+  max-width: 960px;
+  width: min(960px, 100% - 40px);
+  max-height: 90vh;              /* 整個彈窗最高 90% 視窗高 */
+  padding: 20px 24px 18px;
+  box-shadow: 0 20px 60px rgba(60, 60, 120, 0.35);
+  overflow: hidden;              /* 多的內容交給 body 去捲 */
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-modal-body {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;              /* ★ 內容太長時，這裡可以滾輪滑動 */
+  padding-right: 6px;            /* 給捲軸留一點空隙 */
+}
+
+.gallery-modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+/* ====== 下面開始是你的圖卡，不動邏輯 ====== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* 單張作品卡 */
+.gallery-work {
+  display: flex;
+  flex-direction: column;   /* 讓底部按鈕可以被推到底 */
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.12);
+  border: 1px solid rgba(160, 160, 220, 0.3);
+}
+
+.gallery-work img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.gallery-work-main {
+  padding: 12px 14px;
+  flex: 1;                   /* 撐開中間，讓 actions 貼底 */
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-work-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gallery-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.gallery-tag {
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f5f5ff;
+  color: #55557a;
+  border: 1px solid rgba(160, 160, 220, 0.4);
+}
+
+.gallery-desc {
+  margin-top: 6px;
+  font-size: 15px;
+  color: #75759a;
+  line-height: 1.7;
+
+  /* 讓長英文／符號也會自動折行，不會把卡片撐到飛走 */
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 底部按鈕列：auto 把它推到卡片底部 */
+.gallery-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 14px 10px;
+  border-top: 1px solid rgba(200, 200, 240, 0.9);
+  background: #f8f8ff;
+}
+
+.gallery-btn {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid rgba(140, 140, 210, 0.7);
+  background: #ffffff;
+  cursor: pointer;
+  color: #55557a;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.gallery-btn:hover {
+  background: #f0efff;
+  box-shadow: 0 4px 10px rgba(100, 100, 200, 0.2);
+  transform: translateY(-1px);
+}
+
+/* RWD：搜尋列上下排 */
+
+@media (max-width: 720px) {
+  .gallery-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* =============================
+   主線故事（可展開章節）
+   ============================= */
+
+.story-card {
+  padding: 32px 28px;
+  line-height: 1.8;
+}
+
+/* 每一章 */
+
+.story-block {
+  margin-bottom: 16px;
+}
+
+.story-block details {
+  border-radius: 14px;
+  border: 1px solid rgba(170, 170, 230, 0.7);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(80, 80, 160, 0.15);
+  overflow: hidden;
+}
+
+/* summary 樣式 + 自訂小星星箭頭 */
+
+.story-block summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  font-weight: 500;
+}
+
+.story-block summary::-webkit-details-marker {
+  display: none;
+}
+
+.story-block summary::after {
+  content: "✶";
+  position: absolute;
+  right: 14px;
+  font-size: 16px;
+  color: #8a88ff;
+  transition: transform 150ms ease;
+}
+
+.story-block details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.story-tag {
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3f3ff;
+  color: #6b6bd8;
+  border: 1px solid rgba(150, 150, 230, 0.7);
+}
+
+.story-summary-title {
+  font-size: 17px;
+}
+
+.story-content {
+  padding: 0 14px 12px 14px;
+  border-top: 1px solid rgba(210, 210, 245, 0.9);
+  background: #f9f9ff;
+  font-size: 16px;
+  color: #55557a;
+}
+
+.story-content,
+.page-subtitle,
+.card-note {
+  font-family: "Noto Serif JP", "Noto Sans TC", serif;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+
+/* =============================
+   關係年表
+   ============================= */
+
+.timeline-list {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(170, 170, 230, 0.6);
+  box-shadow: 0 4px 12px rgba(80, 80, 160, 0.15);
+}
+
+.timeline-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #6b6bd8;
+  margin-bottom: 4px;
+}
+
+.timeline-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* =============================
+   圖片詳細 Modal（夢圖 / 衣服用）
+   ============================= */
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 40, 70, 0.35);
+  z-index: 1000;
+}
+
+.gallery-modal.is-open {
+  display: flex;
+}
+
+.gallery-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.gallery-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(720px, 90vw);
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(40, 40, 90, 0.4);
+  padding: 24px 24px 20px;
+  overflow: auto;
+}
+
+.gallery-modal-title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 24px;
+  color: var(--text-main);
+}
+
+.gallery-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.gallery-modal-img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-modal-text {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-sub);
+  text-align: left;
+}
+
+.gallery-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+
+.gallery-modal-close:hover {
+  color: #555;
+}
+/* 衣帽間：統一卡片圖片高度，避免跑版 */
+.gallery-work img {
+  width: 100%;
+  height: 420px;        /* 🔥 固定高度：你要 380、400 都行 */
+  object-fit: contain;  /* 🔥 完整顯示，不裁切 */
+  object-position: center;
+  display: block;
+  background: #f3f3ff;  /* 透明圖不會消失 */
+}
+
+/* 強制卡片圖片區域不要被內容撐高 */
+.gallery-work {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-work-main {
+  flex: 1;
+}
+
+.gallery-work-title,
+.gallery-desc {
+  word-break: break-word;
+}
+
+/* ============================
+   夢圖專區：大圖展示版
+   ============================ */
+
+.page-dreams .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 每張更寬 */
+  gap: 24px;
+}
+
+.page-dreams .gallery-work img {
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(200, 200, 240, 0.5);
+}
+
+.page-dreams .gallery-work {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(80, 80, 160, 0.15);
+}
+
+.page-dreams .gallery-work-title {
+  font-size: 18px;
+}
+
+/* ============================
+   衣帽間：服裝作品版
+   ============================ */
+
+.page-wardrobe .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.page-wardrobe .gallery-work img {
+  height: 420px;            /* 固定高度展示整件服裝 */
+  object-fit: contain;
+  background: #f5f5ff;
+}
+
+.page-wardrobe .gallery-work {
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.12);
+}
+
+
+/* 讓整排卡片一樣高 */
+.gallery-grid {
+  align-items: stretch;
+}
+
+
+
+/* =============================
+   RWD：小螢幕
+   ============================= */
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .page-wrapper {
+    padding: 20px 14px 48px;
+  }
+
+  .card {
+    padding: 18px 16px;
+  }
+
+  .card.two-columns,
+  .hero-block,
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
