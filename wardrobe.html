@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>篠宮澪｜衣帽間 Wardrobe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mio.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body class="page-wardrobe">
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <a href="index.html" class="logo-mark" aria-label="回到首頁">✶</a>
+      <div>
+        <div class="logo-text-main">MIO DREAM NOTE</div>
+        <div class="logo-text-sub">篠宮澪｜夢向專屬小宇宙</div>
+      </div>
+    </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="index.html"   class="nav-link">首頁</a></li>
+        <li><a href="profile.html" class="nav-link">人設</a></li>
+        <li><a href="ability.html" class="nav-link">能力</a></li>
+        <li><a href="dreams.html"  class="nav-link">夢圖專區</a></li>
+        <li><a href="wardrobe.html" class="nav-link nav-link-active">澪的衣帽間</a></li>
+        <li><a href="story.html" class="nav-link">主線故事</a></li>
+        <li><a href="relation.html" class="nav-link">關係年表</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="page-wrapper">
+  <h1 class="page-title">澪的衣帽間</h1>
+  <p class="page-subtitle">
+  </p>
+
+  <section class="card gallery-card">
+    <div class="gallery-header">
+      <div class="gallery-search">
+        <span class="gallery-search-icon">🔍</span>
+        <input type="text" id="wardrobeSearch"
+               placeholder="搜尋服裝名稱／場合，例如：戰鬥、日常、禮服"
+               aria-label="搜尋服裝">
+      </div>
+      <div class="gallery-filters">
+        <button class="filter-chip is-active" data-gallery-filter="all">全部</button>
+        <button class="filter-chip" data-gallery-filter="personal">非委託</button>
+        <button class="filter-chip" data-gallery-filter="commission">委託</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid" id="wardrobeGrid">
+      <!-- ☆☆☆ 衣裝卡片開始：每一個 article 是一套服裝 ☆☆☆ -->
+
+      <article class="gallery-work"
+               data-type="personal"
+               data-keywords="非委託 常服 星之呼吸 ">
+        <img src="鬼澪立繪設計.JPG" alt="常服" class="wardrobe-img ">
+        <div class="gallery-work-main">
+          <div class="gallery-work-title">常服</div>
+          <div class="gallery-tags">
+            <span class="gallery-tag">非委託</span>
+            <span class="gallery-tag">常服</span>
+          </div>
+          <p class="gallery-desc">
+            穿著淡紫色和服，布面點綴細緻的櫻花紋樣，線條柔順。外層披著深褐色羽織，袖口寬長。
+            星紋腰帶收束俐落，整體配色由紫漸淡至髮尾。足下為白足袋與木屐。
+            造型安靜端正，帶著冷淡的優雅。腰帶繡有星紋
+          </p>
+        </div>
+        <div class="gallery-actions">
+          <button class="gallery-btn js-gallery-modal">點擊看全圖</button>
+        </div>
+      </article>
+
+      <article class="gallery-work"
+               data-type="commission"
+               data-keywords="委託 禮服 婚紗 ">
+        <img src="婚紗.JPG" alt="婚紗" class="wardrobe-img">
+        <div class="gallery-work-main">
+          <div class="gallery-work-title">婚紗</div>
+          <div class="gallery-tags">
+            <span class="gallery-tag">委託</span>
+            <span class="gallery-tag">婚紗</span>
+          </div>
+          <p class="gallery-desc">
+            幫澪買的漂亮夢幻系婚紗! ART by 多蘿
+          </p>
+        </div>
+        <div class="gallery-actions">
+          <button class="gallery-btn js-gallery-modal">點擊看全圖</button>
+        </div>
+      </article>
+
+      <!-- ☆☆☆ 衣裝卡片結束：要新增就複製上面一整段 ☆☆☆ -->
+    </div>
+  </section>
+</main>
+
+<div id="toast"></div>
+
+<!-- 夢圖／衣帽間共用：圖片詳細 Modal -->
+<div class="gallery-modal" id="galleryModal" aria-hidden="true">
+  <div class="gallery-modal-backdrop"></div>
+  <div class="gallery-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+    <button type="button" class="gallery-modal-close" aria-label="關閉">×</button>
+    <h2 id="galleryModalTitle" class="gallery-modal-title">標題</h2>
+    <div class="gallery-modal-body">
+      <img src="" alt="" class="gallery-modal-img" id="galleryModalImage">
+      <p class="gallery-modal-text" id="galleryModalText"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const $  = (s,r=document)=>r.querySelector(s);
+  const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+
+  function showToast(msg){
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 1400);
+  }
+
+  // 篩選＆搜尋
+  (function setupFilter(){
+    const searchInput = $('#wardrobeSearch');
+    const chips = $$('.filter-chip');
+    const cards = $$('.gallery-work');
+    let current = 'all';
+
+    function apply(){
+      const kw = (searchInput.value || '').toLowerCase().trim();
+      cards.forEach(card=>{
+        const type = card.dataset.type;
+        const text = (card.dataset.keywords || '').toLowerCase();
+        const hitType = (current === 'all' || type === current);
+        const hitKw   = !kw || text.includes(kw);
+        card.style.display = (hitType && hitKw) ? 'flex' : 'none';
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', apply);
+    }
+
+    chips.forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        chips.forEach(c=>c.classList.remove('is-active'));
+        chip.classList.add('is-active');
+        current = chip.dataset.galleryFilter || 'all';
+        apply();
+      });
+    });
+
+    apply();
+  })();
+
+  // 圖片詳細 Modal
+  (function setupGalleryModal(){
+    const modal   = $('#galleryModal');
+    if (!modal) return;
+
+    const backdrop = modal.querySelector('.gallery-modal-backdrop');
+    const closeBtn = modal.querySelector('.gallery-modal-close');
+    const titleEl  = $('#galleryModalTitle');
+    const imgEl    = $('#galleryModalImage');
+    const textEl   = $('#galleryModalText');
+
+    function openFromCard(card){
+      const title = card.querySelector('.gallery-work-title')?.textContent.trim() || '';
+      const img   = card.querySelector('img');
+      const desc  = card.querySelector('.gallery-desc')?.textContent.trim() || '';
+
+      titleEl.textContent = title;
+      if (img) {
+        imgEl.src = img.src;
+        imgEl.alt = img.alt || title;
+      } else {
+        imgEl.src = '';
+        imgEl.alt = '';
+      }
+      textEl.textContent = desc;
+
+      modal.classList.add('is-open');           // 對應 CSS .gallery-modal.is-open
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function close(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    // 點卡片上的「細節說明」
+    document.addEventListener('click', (e)=>{
+      const trigger = e.target.closest('.js-gallery-modal');
+      if (!trigger) return;
+      const card = trigger.closest('.gallery-work');
+      if (!card) return;
+      e.preventDefault();
+      openFromCard(card);
+    });
+
+    // 點背景或關閉按鈕關掉
+    [backdrop, closeBtn].forEach(el=>{
+      if (!el) return;
+      el.addEventListener('click', close);
+    });
+
+    // ESC 關閉
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        close();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
