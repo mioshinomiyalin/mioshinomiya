@@ -90,6 +90,25 @@ a {
   box-shadow: 0 3px 20px rgba(150, 150, 200, 0.25);
 }
 
+/* 漢堡選單按鈕（桌機隱藏） */
+.nav-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 4px 0;
+  border-radius: 999px;
+  background: #7a7a99;
+}
+
+
 .header-inner {
   max-width: 960px;
   margin: 0 auto;
@@ -1014,13 +1033,86 @@ a {
 
 
 /* ============================
-   手機版字體放大（A方案）
+   手機版字體放大（溫和版）
    ============================ */
 @media (max-width: 768px) {
-  body { font-size: 18px !important; line-height: 1.9 !important; }
-  p, div, span, a, li, button { font-size: 18px !important; }
-  h1, .page-title { font-size: 22px !important; }
-  h2, .card-title { font-size: 20px !important; }
-  .gallery-desc, .story-content, .gallery-modal-text { font-size: 18px !important; }
-  .gallery-tag, .filter-chip { font-size: 14px !important; }
+
+  body {
+    font-size: 16px;          /* 全站小放大一階 */
+    line-height: 1.9;
+  }
+
+  p,
+  .page-subtitle,
+  .card-note,
+  .hero-main-text,
+  .info-value,
+  .gallery-desc,
+  .story-content,
+  .gallery-modal-text,
+  .timeline-item p {
+    font-size: 15px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .card-title,
+  .story-summary-title,
+  .gallery-work-title,
+  .timeline-label {
+    font-size: 17px;
+  }
+
+  .gallery-tag,
+  .filter-chip,
+  .story-tag,
+  .tag {
+    font-size: 13px;
+  }
+
+  .gallery-btn {
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+
+  .header-inner {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 顯示漢堡，隱藏原本 nav（等點開再出現） */
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .site-nav {
+    width: 100%;
+    display: none;           /* 預設收起來 */
+  }
+
+  .site-nav.is-open {
+    display: block;          /* JS 會加這個 class 讓它展開 */
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+  }
 }
