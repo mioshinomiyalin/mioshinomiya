@@ -380,14 +380,14 @@ a {
 }
 
 /* 頁面導覽清單 */
-
 .info-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 12px;
+  grid-template-columns: 1fr;
+
 }
 
 .info-item {
@@ -411,6 +411,10 @@ a {
   line-height: 1.8;
 }
 
+.page-ability .ability-section-inner {
+  max-width: 960px;
+  margin: 0 auto;    /* 置中 */
+}
 /* ====== 首頁：頁面導覽（可點卡片） ====== */
 .nav-grid {
   display: grid;
