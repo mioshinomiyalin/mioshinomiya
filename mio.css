@@ -285,6 +285,36 @@ a {
   align-items: center;
 }
 
+.full-image-wrap {
+  width: 80%;
+  text-align: center;
+}
+
+.full-image-wrap img {
+  width: 80%;
+  height: auto;
+  display: block;
+  border-radius: 12px; /* 想要直角可改成 0 */
+}
+
+/* 特別感謝：卡片中的圖片置中 */
+.special-img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+
+
+.special-img-wrap img {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+
+
 .hero-main-text {
   font-size: 14px;
   line-height: 1.95;
